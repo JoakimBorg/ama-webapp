@@ -1,0 +1,159 @@
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/semibold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/light-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/regular-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/medium-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/semibold-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  src: url('./assets/fonts/founders-grotesk/bold-italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --chat-column-width: 48rem;
+  --page-gutter: clamp(1rem, 4vw, 2rem);
+
+  /* Brand neutrals */
+  --color-canvas: #f5f5ed;
+  --color-ink: #000000;
+  --color-muted: #96968f;
+  --color-surface: #e8e8e1;
+  --color-control-overlay: rgba(193, 193, 189, 0.25);
+  --color-overlay: rgba(0, 0, 0, 0.45);
+
+  /* Text hierarchy */
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: var(--color-muted);
+  --color-text-tertiary: #73736d;
+  --color-text-inverse: var(--color-canvas);
+  --color-text-disabled: rgba(0, 0, 0, 0.38);
+
+  /* Borders and interaction */
+  --color-border: rgba(0, 0, 0, 0.12);
+  --color-border-strong: rgba(0, 0, 0, 0.24);
+  --color-link: var(--color-ink);
+  --color-link-hover: #5f5f59;
+  --color-control-hover: rgba(193, 193, 189, 0.45);
+  --color-control-pressed: rgba(193, 193, 189, 0.6);
+  --color-focus-ring: #4b4b45;
+  --color-selection: rgba(150, 150, 143, 0.25);
+
+  /* Quiet utility colors for status and feedback */
+  --color-success: #52664e;
+  --color-success-surface: #e8ece5;
+  --color-warning: #8a6743;
+  --color-warning-surface: #f1ece4;
+  --color-danger: #925a55;
+  --color-danger-surface: #f1e8e6;
+  --color-info: #586a78;
+  --color-info-surface: #e8ecef;
+
+  font-family: 'Founders Grotesk', system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  color: var(--color-text-primary);
+  background-color: var(--color-canvas);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.chat-column {
+  width: min(100%, var(--chat-column-width));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
