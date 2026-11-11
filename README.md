@@ -13,8 +13,8 @@ Run `npm run build` to create a production build and `npm run lint` to check the
 
 ## GitHub Pages
 
-The site is configured for the repository URL path and deploys from the `main` branch using GitHub Actions. In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+The site is configured for the repository URL path and deploys from the `main` branch using GitHub Actions. Each push to `main` builds the Vite app and publishes it to GitHub Pages.
 
-After the workflow completes, the site will be available at:
+After the deployment workflow completes successfully, the site is available at:
 
 <https://joakimborg.github.io/ama-webapp/>
