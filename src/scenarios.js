@@ -17,6 +17,13 @@ export const scenarios = [
       answer: 'Yes',
       reasoning: 'Hearing the idea could help the group make a more informed decision.',
     },
+    stakeholderOpinions: [
+      { stakeholder: 'Idea proposer', supports: true },
+      { stakeholder: 'Meeting facilitator', supports: true },
+      { stakeholder: 'Project lead', supports: true },
+      { stakeholder: 'Timekeeper', supports: false },
+      { stakeholder: 'Team member', supports: false },
+    ],
   },
   {
     id: 'example-three',

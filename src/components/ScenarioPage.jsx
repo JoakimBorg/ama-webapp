@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import QuestionField from './QuestionField'
+import StakeholderOpinions from './StakeholderOpinions'
 import WriteOnText from './WriteOnText'
 
 const answerFeedbackDelay = 900
@@ -112,6 +113,9 @@ function ScenarioPage({ scenario, index, answers, onAnswerChange, onNext }) {
               reducedMotion={reducedMotion}
             />
           </p>
+          {scenario.stakeholderOpinions && (
+            <StakeholderOpinions opinions={scenario.stakeholderOpinions} />
+          )}
         </section>
       )}
 

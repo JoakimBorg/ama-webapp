@@ -212,8 +212,8 @@
   place-items: center;
   text-align: center;
   min-width: 8rem;
-  height: 3.75rem;
-  min-height: 3.75rem;
+  height: 4rem;
+  min-height: 4rem;
   padding: 0.8rem 1.4rem;
   border: 1px solid var(--color-border-strong);
   border-radius: 999px;
@@ -256,7 +256,7 @@
 .locked-label {
   position: absolute;
   right: 0.4rem;
-  bottom: 0.3rem;
+  bottom: 0.55rem;
   left: 0.4rem;
   display: flex;
   align-items: center;
@@ -308,6 +308,45 @@
 .recommendation p {
   margin: 0.75rem 0 0;
   line-height: 1.5;
+}
+
+.stakeholder-opinions {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.stakeholder-opinions h3 {
+  margin: 0 0 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.stakeholder-opinions table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+.stakeholder-opinions th,
+.stakeholder-opinions td {
+  padding: 0.3rem 0;
+}
+
+.stakeholder-opinions thead th {
+  color: var(--color-text-tertiary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.stakeholder-opinions tbody th {
+  font-weight: 400;
+}
+
+.stakeholder-opinions td {
+  width: 4rem;
+  text-align: center;
 }
 
 .sr-only {
