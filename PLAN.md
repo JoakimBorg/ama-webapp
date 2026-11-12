@@ -6,12 +6,11 @@ Build a clear, accessible survey experience for the Artificial Moral Assistant u
 
 ## Next steps
 
-1. Define the survey flow, questions, response options, and completion behavior.
-2. Confirm participant consent, anonymity, data retention, and withdrawal requirements before collecting responses.
-3. Implement the survey screens with responsive layouts, accessible controls, progress, and validation.
-4. Choose and integrate response storage. Make the database status reflect a real connection before displaying it to participants.
-5. Test the complete flow across mobile and desktop, including keyboard use and error states.
+1. Replace example scenarios, yes/no questions, AMA recommendations, and completion copy with the approved study content.
+2. Confirm participant information, consent, anonymity, data retention, and withdrawal requirements before collecting responses. The flow has no separate consent page.
+3. Choose and integrate response storage and explicitly handle submission errors.
+4. Test the final study across mobile and desktop, including keyboard use and submission error states.
 
 ## Current state
 
-The app currently contains the welcome screen only. The Start button, database status, and anonymity notice are presentation-only; no survey or response collection is connected.
+The app contains a welcome page, reusable scenario pages with initial and final yes/no answers, and an end page with example content. The first answer is visibly locked, the AMA recommendation shows a bold Yes/No decision with a short write-on rationale, and the second answer immediately advances. Scenario buttons use full available width on phones. AMA recommendations are preset examples, not AI-generated. Answers are held in memory during the preview and are not saved or submitted. The preview is not ready to collect study responses.

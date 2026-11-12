@@ -1,48 +1,92 @@
+import { useEffect, useRef, useState } from 'react'
+import ScenarioPage from './components/ScenarioPage'
+import SurveyButton from './components/SurveyButton'
+import { scenarios } from './scenarios'
 import './App.css'
 
 function App() {
+  const [step, setStep] = useState('welcome')
+  const [answers, setAnswers] = useState({})
+  const mainRef = useRef(null)
+  const previousStep = useRef(step)
+
+  useEffect(() => {
+    if (previousStep.current !== step) {
+      mainRef.current.querySelector('h1').focus()
+      previousStep.current = step
+    }
+  }, [step])
+
+  function updateAnswer(scenarioId, questionId, value) {
+    setAnswers((current) => ({
+      ...current,
+      [scenarioId]: {
+        ...current[scenarioId],
+        [questionId]: value,
+      },
+    }))
+  }
+
+  function restart() {
+    setAnswers({})
+    setStep('welcome')
+  }
+
+  const isScenario = typeof step === 'number'
+
   return (
     <div className="app-shell">
       <header className="app-header">
-        <a className="brand" href="/" aria-label="Artificial Moral Assistant home">
-          <span className="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 3.5c1.7 5.2 2.3 5.8 7.5 7.5-5.2 1.7-5.8 2.3-7.5 7.5-1.7-5.2-2.3-5.8-7.5-7.5 5.2-1.7 5.8-2.3 7.5-7.5Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-          <span>Artificial Moral Assistant</span>
-        </a>
-        <div className="header-note">
-          <span className="status-dot" aria-hidden="true" />
-          Database online
-        </div>
+        {step === 'welcome' ? (
+          <a className="brand" href={import.meta.env.BASE_URL} aria-label="Artificial Moral Assistant home">
+            Artificial Moral Assistant
+          </a>
+        ) : (
+          <span className="brand">{isScenario ? `Scenario ${step + 1} of ${scenarios.length}` : 'Artificial Moral Assistant'}</span>
+        )}
+        <span className="header-note">Study preview</span>
       </header>
 
-      <main className="welcome-main">
-        <section className="welcome-content" aria-labelledby="welcome-title">
-          <h1 id="welcome-title">Artificial Moral Assistant</h1>
-          <button className="start-button" type="button">
-            Start
-            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path
-                d="M4.5 10h10m-4-4 4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <p className="welcome-note">Anonymous user study.</p>
-        </section>
-      </main>
+      <main className={isScenario ? 'survey-main' : 'welcome-main'} ref={mainRef}>
+        {step === 'welcome' && (
+          <section className="welcome-content" aria-labelledby="welcome-title">
+            <h1 id="welcome-title" tabIndex="-1">Artificial Moral Assistant</h1>
+            <SurveyButton onClick={() => setStep(0)}>
+              Start
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path
+                  d="M4.5 10h10m-4-4 4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </SurveyButton>
+            <p className="welcome-note">Study preview with example scenarios. Answers are not saved or submitted.</p>
+          </section>
+        )}
 
-      <footer className="app-footer">
-        Copyright: Joakim Borg - Uppsala University 2027
-      </footer>
+        {isScenario && (
+          <ScenarioPage
+            key={scenarios[step].id}
+            scenario={scenarios[step]}
+            index={step}
+            answers={answers[scenarios[step].id] ?? {}}
+            onAnswerChange={(questionId, value) => updateAnswer(scenarios[step].id, questionId, value)}
+            onNext={() => setStep(step === scenarios.length - 1 ? 'end' : step + 1)}
+          />
+        )}
+
+        {step === 'end' && (
+          <section className="welcome-content" aria-labelledby="end-title">
+            <p className="eyebrow">Preview complete</p>
+            <h1 id="end-title" tabIndex="-1">Thank you</h1>
+            <p className="end-note">You have reached the end of the example scenarios. Your answers have not been saved or submitted.</p>
+            <SurveyButton onClick={restart}>Start over</SurveyButton>
+          </section>
+        )}
+      </main>
     </div>
   )
 }
