@@ -18,4 +18,13 @@ export const scenarios = [
       reasoning: 'Hearing the idea could help the group make a more informed decision.',
     },
   },
+  {
+    id: 'example-three',
+    description: 'A library is considering extending its weekend hours during exam season. This could give students more quiet study time, but staff coverage is limited.',
+    question: 'Should the library extend its weekend hours?',
+    recommendation: {
+      answer: 'No',
+      reasoning: 'Confirm staff coverage before changing the schedule.',
+    },
+  },
 ]

@@ -37,10 +37,16 @@ function App() {
   }
 
   const isScenario = typeof step === 'number'
+  const showProgress = isScenario || step === 'end'
+  const completedScenarios = scenarios.reduce(
+    (count, scenario) => count + Number(Boolean(answers[scenario.id]?.final)),
+    0,
+  )
+  const progressValue = step === 'end' ? scenarios.length : completedScenarios
 
   return (
     <div className="app-shell">
-      <header className="app-header">
+      <header className={`app-header${showProgress ? ' app-header--survey' : ''}`}>
         {step === 'welcome' ? (
           <a className="brand" href={import.meta.env.BASE_URL} aria-label="Artificial Moral Assistant home">
             Artificial Moral Assistant
@@ -49,6 +55,19 @@ function App() {
           <span className="brand">{isScenario ? `Scenario ${step + 1} of ${scenarios.length}` : 'Artificial Moral Assistant'}</span>
         )}
         <span className="header-note">Study preview</span>
+        {showProgress && (
+          <div
+            className="survey-progress"
+            role="progressbar"
+            aria-label="Scenario progress"
+            aria-valuemin="0"
+            aria-valuemax={scenarios.length}
+            aria-valuenow={progressValue}
+            aria-valuetext={`${progressValue} of ${scenarios.length} scenarios completed`}
+          >
+            <span style={{ transform: `scaleX(${progressValue / scenarios.length})` }} />
+          </div>
+        )}
       </header>
 
       <main className={isScenario ? 'survey-main' : 'welcome-main'} ref={mainRef}>
