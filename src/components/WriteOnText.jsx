@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-function WriteOnText({ text, onComplete, reducedMotion, startDelay = 0 }) {
+function WriteOnText({ text, boldPrefix = '', onComplete, reducedMotion, startDelay = 0 }) {
   const [visibleCount, setVisibleCount] = useState(0)
   const completed = useRef(false)
 
@@ -20,7 +20,7 @@ function WriteOnText({ text, onComplete, reducedMotion, startDelay = 0 }) {
 
     const timer = setTimeout(
       () => setVisibleCount((count) => count + 1),
-      visibleCount === 0 ? startDelay : 18,
+      visibleCount === 0 ? startDelay : 30,
     )
     return () => clearTimeout(timer)
   }, [text, visibleCount, onComplete, reducedMotion, startDelay])
@@ -28,7 +28,10 @@ function WriteOnText({ text, onComplete, reducedMotion, startDelay = 0 }) {
   return (
     <>
       <span className="sr-only">{text}</span>
-      <span aria-hidden="true">{reducedMotion ? text : text.slice(0, visibleCount)}</span>
+      <span aria-hidden="true">
+        {boldPrefix && <strong>{(reducedMotion ? text : text.slice(0, visibleCount)).slice(0, boldPrefix.length)}</strong>}
+        {(reducedMotion ? text : text.slice(0, visibleCount)).slice(boldPrefix.length)}
+      </span>
     </>
   )
 }

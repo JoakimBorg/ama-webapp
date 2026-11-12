@@ -20,7 +20,13 @@ function QuestionField({ question, value, locked = false, showLockedState = fals
             >
               {option}
               {showLockedState && value === option.toLowerCase() && (
-                <span className="locked-label">Locked in</span>
+                <span className="locked-label">
+                  <svg className="locked-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <rect x="5.5" y="10" width="13" height="10" rx="2" />
+                    <path d="M8.5 10V7.5a3.5 3.5 0 0 1 7 0V10" />
+                  </svg>
+                  Locked in
+                </span>
               )}
             </button>
           ))}

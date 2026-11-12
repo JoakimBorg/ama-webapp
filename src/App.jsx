@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import ScenarioPage from './components/ScenarioPage'
 import SurveyButton from './components/SurveyButton'
 import { scenarios } from './scenarios'
@@ -9,6 +9,10 @@ function App() {
   const [answers, setAnswers] = useState({})
   const mainRef = useRef(null)
   const previousStep = useRef(step)
+  const nextStep = useCallback(
+    () => setStep((current) => current === scenarios.length - 1 ? 'end' : current + 1),
+    [],
+  )
 
   useEffect(() => {
     if (previousStep.current !== step) {
@@ -74,7 +78,7 @@ function App() {
             index={step}
             answers={answers[scenarios[step].id] ?? {}}
             onAnswerChange={(questionId, value) => updateAnswer(scenarios[step].id, questionId, value)}
-            onNext={() => setStep(step === scenarios.length - 1 ? 'end' : step + 1)}
+            onNext={nextStep}
           />
         )}
 
